@@ -21,12 +21,15 @@ function UserContext({ children }) {
       setUserData(result.data);
       console.log("Current User:", result.data);
     } catch (error) {
-      console.log("❌ Current user error:", error.response?.data || error.message);
-      setUserData(null); // IMPORTANT
+      console.log(
+        "❌ Current user error:",
+        error.response?.data || error.message
+      );
+      setUserData(null);
     }
   };
 
-  // 🤖 Gemini / Assistant call
+  // 🤖 Assistant
   const getGeminiResponse = async (command) => {
     try {
       const result = await axios.post(
@@ -36,8 +39,11 @@ function UserContext({ children }) {
       );
       return result.data;
     } catch (error) {
-      console.log("❌ Gemini API error:", error.response?.data || error.message);
-      return null; // IMPORTANT
+      console.log(
+        "❌ Gemini API error:",
+        error.response?.data || error.message
+      );
+      return null;
     }
   };
 
