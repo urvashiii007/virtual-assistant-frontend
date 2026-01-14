@@ -54,7 +54,7 @@ function SignIn() {
         onSubmit={handleSignIn}
       >
         <h1 className='text-white text-[30px] font-semibold mb-[30px]'>
-          Sign In to <span className='text-blue-400'>Virtual Assistant</span>
+          Sign In to <span className='text-blue-400'>VoiceGenie</span>
         </h1>
 
         <input
