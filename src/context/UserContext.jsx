@@ -21,8 +21,18 @@ function UserContext({ children }) {
       setUserData(result.data);
       console.log("Current User:", result.data);
     } catch (error) {
-      console.log(
-        "❌ Current user error:",
+      // ✅ user not logged in = NORMAL case (no console noise)
+      if (
+        error.response?.status === 400 ||
+        error.response?.status === 401
+      ) {
+        setUserData(null);
+        return;
+      }
+
+      // ❌ only unexpected errors
+      console.error(
+        "Unexpected current user error:",
         error.response?.data || error.message
       );
       setUserData(null);
@@ -39,8 +49,9 @@ function UserContext({ children }) {
       );
       return result.data;
     } catch (error) {
-      console.log(
-        "❌ Gemini API error:",
+      // Gemini quota / server error → keep console clean
+      console.error(
+        "Gemini API error:",
         error.response?.data || error.message
       );
       return null;
